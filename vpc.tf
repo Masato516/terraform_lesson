@@ -43,7 +43,7 @@ resource "aws_subnet" "recruit_web_private_1d" {
 # DB作成のためのサブネットグループ
 resource "aws_db_subnet_group" "db-subnet" {
   name        = "test-db-subnet"
-  description = "test db subnet"
+  description = "This subnet-group is for test db subnet"
   subnet_ids  = [aws_subnet.recruit_web_db_1c.id, aws_subnet.recruit_web_private_1d.id]
 
   tags = {
