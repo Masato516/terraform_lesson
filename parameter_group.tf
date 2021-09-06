@@ -1,10 +1,10 @@
 resource "aws_db_parameter_group" "recruit-pg" {
   name        = "rds-pg"
-  family      = "mysql8.0.23"
+  family      = "mysql8.0"
   description = "This parameter group is for RDS of recruit-web"
 
   parameter {
-    name  = "character_set_client"
+    name  = "time_zone"
     value = "Asia/Tokyo"
   }
   parameter {
