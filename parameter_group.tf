@@ -1,4 +1,4 @@
-resource "aws_db_parameter_group" "recruit-pg" {
+resource "aws_db_parameter_group" "recruit_pg" {
   name        = "rds-pg"
   family      = "mysql8.0"
   description = "This parameter group is for RDS of recruit-web"
