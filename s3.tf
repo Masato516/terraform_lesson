@@ -1,17 +1,17 @@
-resource "aws_s3_bucket" "recruit-bucket-2" {
-  bucket = "bucket.recruit-rits-2.net"
+resource "aws_s3_bucket" "recruit_bucket" {
+  bucket = "bucket.ritsrecruit.net"
 
   cors_rule {
     allowed_headers = ["*"]
     allowed_methods = ["GET", "PUT", "POST", "HEAD", "DELETE"]
-    allowed_origins = ["https://www.recruit-rits.net"]
+    allowed_origins = ["https://www.ritsrecruit.link"]
     expose_headers  = []
     max_age_seconds = 3000
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "recruit-bucket-access-bucket" {
-  bucket = aws_s3_bucket.recruit-bucket-2.id
+resource "aws_s3_bucket_public_access_block" "recruit_access_bucket" {
+  bucket = aws_s3_bucket.recruit_bucket.id
 
   # Block public access (bucket settings)
   block_public_acls       = true
