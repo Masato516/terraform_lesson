@@ -7,5 +7,5 @@ resource "aws_route53_record" "www" {
   name    = "www.ritsrecruit.link"
   type    = "A"
   ttl     = "300"
-  records = [aws_eip.recruit_ip.public_ip]
+  records = [aws_instance.recruit_web_server.public_ip]
 }
