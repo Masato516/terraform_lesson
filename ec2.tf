@@ -4,10 +4,16 @@ resource "aws_instance" "recruit_web_server" {
   associate_public_ip_address = "true" # IPアドレスを割り当てる
   vpc_security_group_ids      = [aws_security_group.sg_for_public_subnet.id]
   subnet_id                   = aws_subnet.recruit_web_1c.id
+  key_name                    = aws_key_pair.auth.id # 利用する鍵
 
   tags = {
     Name = "recruit_web_server"
   }
+}
+
+resource "aws_key_pair" "auth" {
+  key_name   = var.key_name
+  public_key = file(var.public_key_path)
 }
 
 # 割り当てられたIPアドレスを出力
