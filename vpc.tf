@@ -50,3 +50,18 @@ resource "aws_db_subnet_group" "db-subnet" {
     Name = "DB subnet group"
   }
 }
+
+resource "aws_eip" "recruit_web_eip" {
+  instance = aws_instance.recruit_web_server.id
+  vpc      = true
+
+  tags = {
+    Name = "recruit_web_eip"
+  }
+}
+
+# 割り当てられたIPアドレスを出力
+output "elastic_ip" {
+  value       = aws_eip.recruit_web_eip.public_ip
+  description = "The public IP address of the main server instance."
+}
