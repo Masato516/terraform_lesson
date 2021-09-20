@@ -6,6 +6,80 @@ resource "aws_instance" "recruit_web_server" {
   subnet_id                   = aws_subnet.recruit_web_1c.id
   key_name                    = aws_key_pair.auth.id # 利用する鍵
 
+  user_data = <<-EOF
+    #!/bin/bash
+    sudo yum update -y
+
+    # デフォルトのmariadbを削除
+    sudo yum uninstall mariadb-libs
+
+    # mysql
+    sudo yum install -y https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+    sudo yum-config-manager --disable mysql80-community
+    sudo yum-config-manager --enable mysql57-community
+    sudo yum install -y mysql-community-client # mysqlクライアント
+
+    # 必要なパッケージをインストール(アルファベット順)
+    # curl                # データを送信できる
+    # gcc-c++ \           # c++のコンパイラ
+    # git \               # バージョン管理ができる
+    # ImageMagick-devel \ # 画像を操作したり表示できる
+    # libcurl-devel       # curlを扱える
+    # libffi-devel \      # FFIの機能を扱える
+    # libicu-devel \      # Unicodeを扱える
+    # libxml2 \           # XMLを解析できる
+    # libxml2-devel \     # XMLを解析できる
+    # libxslt \           # XMLにXSLを適用させる
+    # libxslt-devel \     # XMLにXSLを適用させる
+    # libyaml-devel \     # yamlファイルを扱える
+    # make \              # ソースコードからビルドできる
+    # openssl-devel \     # 通信を暗号化する
+    # patch \             # ファイルの修正や生成ができる
+    # readline-devel \    # CUIで行入力を支援してくれる
+    # zlib-devel \        # データの圧縮や伸張ができる
+
+    sudo yum install -y \
+    curl \
+    gcc-c++ \
+    git \
+    ImageMagick-devel \
+    libcurl-devel \
+    libffi-devel \
+    libicu-devel \
+    libxml2 \
+    libxml2-devel \
+    libxslt \
+    libxslt-devel \
+    libyaml-devel \
+    make \
+    openssl-devel \
+    patch \
+    readline-devel \
+    zlib-devel \
+
+    # Node.jsをインストール
+    curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
+    sudo yum install -y nodejs
+
+    # rbenvのインストール
+    git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+    # .bash_profileの設定
+    # パスを通す
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+    echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+    source .bash_profile
+
+    # rubyをインストールするためのruby-buildのインストール
+    git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+    # rubyのインストール
+    rbenv install 2.7.1
+    # インストールしたrubyを使用可能にする
+    rbenv rehash
+    # このインスタンスで使用するバージョンの設定
+    rbenv global 2.7.1
+  EOF
+
   tags = {
     Name = "recruit_web_server"
   }
