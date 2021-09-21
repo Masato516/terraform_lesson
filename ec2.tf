@@ -19,6 +19,7 @@ resource "aws_instance" "recruit_web_server" {
     sudo yum-config-manager --enable mysql57-community
     sudo yum install -y mysql-community-client # mysqlクライアント
 
+
     # 必要なパッケージをインストール(アルファベット順)
     # curl                # データを送信できる
     # gcc-c++ \           # c++のコンパイラ
@@ -55,29 +56,11 @@ resource "aws_instance" "recruit_web_server" {
     openssl-devel \
     patch \
     readline-devel \
-    zlib-devel \
+    zlib-devel
 
     # Node.jsをインストール
     curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
     sudo yum install -y nodejs
-
-    # rbenvのインストール
-    git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-    # .bash_profileの設定
-    # パスを通す
-    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-    echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-    source .bash_profile
-
-    # rubyをインストールするためのruby-buildのインストール
-    git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-
-    # rubyのインストール
-    rbenv install 2.7.1
-    # インストールしたrubyを使用可能にする
-    rbenv rehash
-    # このインスタンスで使用するバージョンの設定
-    rbenv global 2.7.1
   EOF
 
   tags = {
