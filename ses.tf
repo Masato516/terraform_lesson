@@ -1,5 +1,5 @@
 # MEMO: とりあえず、現時点では必要ない？
-# resource "aws_ses_domain_mail_from" "example" {
+# resource "aws_ses_domain_mail_from" "recruit_mail_from" {
 #   domain           = aws_ses_domain_identity.recruit_ses.domain
 #   mail_from_domain = "bounce.${aws_ses_domain_identity.recruit_ses.domain}"
 # }
@@ -9,8 +9,7 @@ resource "aws_ses_domain_identity" "recruit_ses" {
   domain = var.domain
 }
 
-# TODO: メールアドレスの検証もコード化できないかチェック
-#       とりあえず、手動で検証をおこなう
+# TODO: 想定どおり動作しているか要確認
 resource "aws_ses_domain_identity_verification" "recruit_verification" {
   domain = aws_ses_domain_identity.recruit_ses.id
 
@@ -18,7 +17,7 @@ resource "aws_ses_domain_identity_verification" "recruit_verification" {
 }
 
 # DKIM tokensの生成
-resource "aws_ses_domain_dkim" "example" {
+resource "aws_ses_domain_dkim" "recruit_dkim" {
   domain = aws_ses_domain_identity.recruit_ses.domain
 }
 
