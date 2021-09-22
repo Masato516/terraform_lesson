@@ -17,11 +17,13 @@ resource "aws_db_instance" "recruit_db" {
 # 割り当てられたホスト名を出力
 output "rds_host" {
   value       = aws_db_instance.recruit_db.address
+  sensitive   = true
   description = "The hostname of the RDS instance."
 }
 
 # 割り当てられたポート番号を出力
 output "rds_port" {
   value       = aws_db_instance.recruit_db.port
+  sensitive   = true
   description = "The port of the RDS instance."
 }
