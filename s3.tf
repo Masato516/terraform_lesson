@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "recruit_bucket" {
   cors_rule {
     allowed_headers = ["*"]
     allowed_methods = ["GET", "PUT", "POST", "HEAD", "DELETE"]
-    allowed_origins = ["https://www.ritsrecruit.link"]
+    allowed_origins = ["https://www.${var.domain}"]
     expose_headers  = []
     max_age_seconds = 3000
   }
