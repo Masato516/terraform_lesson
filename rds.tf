@@ -9,6 +9,7 @@ resource "aws_db_instance" "recruit_db" {
   db_subnet_group_name   = aws_db_subnet_group.db-subnet.name
   vpc_security_group_ids = [aws_security_group.sg_for_db_subnet.id]
   parameter_group_name   = aws_db_parameter_group.recruit_pg.name
+  availability_zone      = "ap-northeast-1c"
   multi_az               = false
   skip_final_snapshot    = true # DB削除時にスナップショットを残す
   # final_snapshot_identifier = "recruit-db-snapshot"
