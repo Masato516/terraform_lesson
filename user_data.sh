@@ -25,6 +25,7 @@ sudo yum install -y mysql-community-client # mysqlクライアント
 # libxslt-devel \     # XMLにXSLを適用させる
 # libyaml-devel \     # yamlファイルを扱える
 # make \              # ソースコードからビルドできる
+# mysql-devel \       # mysql関連のパッケージ (MEMO: 後からインストールしたため、user_dataで動作するかは未確認)
 # openssl-devel \     # 通信を暗号化する
 # patch \             # ファイルの修正や生成ができる
 # readline-devel \    # CUIで行入力を支援してくれる
@@ -43,6 +44,7 @@ sudo yum install -y curl \
                     libxslt-devel \
                     libyaml-devel \
                     make \
+                    mysql-devel \
                     openssl-devel \
                     patch \
                     readline-devel \

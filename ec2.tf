@@ -8,6 +8,11 @@ resource "aws_instance" "recruit_web_server" {
 
   user_data = file("./user_data.sh")
 
+   # MEMO: user_dataへのmysql-devel追加によるreplaceを防ぐために以下を追加
+  lifecycle {
+    ignore_changes = [user_data]
+  }
+
   tags = {
     Name = "recruit_web_server"
   }
