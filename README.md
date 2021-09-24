@@ -84,10 +84,10 @@ terraform.state ファイルを元に現在のリソースの状態を参照す�
 なお、実行すると terraform.tfstate のリソース情報がスカスカになり、
 削除直前のものは terraform.tfstate.backup に保存される形となる
 
-使用例.
-# 全てのリソースを削除
+### 使用例.
+- 全てのリソースを削除
 AWS_PROFILE=プロファイル名 terraform destroy
-# 特定のリソースを削除
+- 特定のリソースを削除
 AWS_PROFILE=プロファイル名 terraform destroy -target=aws_subnet.recruit_web_1c
 
 
@@ -95,17 +95,21 @@ AWS_PROFILE=プロファイル名 terraform destroy -target=aws_subnet.recruit_w
 本番環境やステージング環境などに分けられる
 (https://www.terraform.io/docs/language/state/workspaces.html)
 
+```bash
 $ terraform workspace list
+```
 workspace（作業空間）の一覧を出力
-* default <- 現在のworkspace
+default <- 現在のworkspace
 
-
+```bash
 $ terraform workspace new <workspace名>
+```
 workspaceを作成
 
 例.
+```bash
 terraform workspace new production
-
+```
 
 ### output
 
@@ -115,10 +119,14 @@ EC2インスタンスのパブリックIPなど、
 
 
 # 書式
+```hcl
 output "<アウトプットする属性の説明>" {
   value = "<アウトプットする属性値>"
 }
+```
 
+```hcl
 output "public ip of cm-test" {
   value = "${aws_instance.cm-test.public_ip}"
 }
+```
