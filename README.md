@@ -1,29 +1,29 @@
-公式ドキュメント: "https://registry.terraform.io/"
-公式チュートリアル: "https://learn.hashicorp.com/"
+- [公式ドキュメント](https://registry.terraform.io/)
+- [公式チュートリアル](https://learn.hashicorp.com/)
 
 Terraform v1.0.5
 
-## tfenv
+### tfenv
 terraform のバージョン管理ツール
 v2.2.2
 
-## tfファイル
+### tfファイル
 カレントディレクトリの直下のファイルしか読み込まれない！！！
 全ての直下のファイルが読み込まれるため、
 ファイル名は何でも良い
 
-## resource
+### resource
 リソース（インフラ）を作るための文
 
-## data
+### data
 リソースを取得するための文
 すでに作成済みのリソースの情報を取得する
 
-## tfstateファイル
+### tfstateファイル
 terraformで管理しているインフラリソースを
 全て記載したjsonファイル
 
-## 設定ファイルと認証情報ファイルの設定
+### 設定ファイルと認証情報ファイルの設定
 AWS CLI コマンドに適用できる設定と認証情報の集まり
 コマンドを実行するプロファイルを指定すると、
 設定と認証情報を使用してそのコマンドが実行される。
@@ -49,7 +49,7 @@ output = json
 (~/backend.tf)
 tfstateファイルをS3で管理
 
-## terraform apply
+### terraform apply
 .tf ファイルに記載された情報を元にリソースを作成するコマンド。
 リソースが作成されると terraform.state というファイルに、
 作成されたリソースに関連する情報が保存される
@@ -60,12 +60,12 @@ Terraform において、この状態を管理する terraform.state ファイ�
 AWS_PROFILE=<プロファイル名> terraform apply
 
 
-## terraform validate
+### terraform validate
 terraformの構文チェック
 あんまり使わない（planで大体わかる！）
 
 
-## terraform plan (dry-run)
+### terraform plan (dry-run)
 Terraform による実行計画を参照するコマンド
 .tf ファイルに記載された情報を元に、
 どのようなリソースが 作成/修正/削除 されるかを参照することが可能
@@ -74,11 +74,11 @@ Terraform による実行計画を参照するコマンド
 AWS_PROFILE=プロファイル名 terraform plan
 
 
-## terraform show
+### terraform show
 terraform.state ファイルを元に現在のリソースの状態を参照するコマンド
 
 
-## terraform destroy
+### terraform destroy
 .tf ファイルに記載された情報を元にリソースを削除するコマンド
 なお、実行すると terraform.tfstate のリソース情報がスカスカになり、
 削除直前のものは terraform.tfstate.backup に保存される形となる
@@ -106,7 +106,7 @@ workspaceを作成
 terraform workspace new production
 
 
-## output
+### output
 
 EC2インスタンスのパブリックIPなど、
 環境を構築した結果リソースに割り当てられた属性値を知りたい場合がある
