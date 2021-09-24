@@ -33,6 +33,7 @@ default プロファイルを 1 つ指定できる
 $ aws configure で簡単に設定できる 
 (~/.aws/credentials と ~/.aws/configure に保存される)
 
+```bash
 例--------------------------------------------
 ~/.aws/credentials
 [プロファイル名]
@@ -44,7 +45,7 @@ aws_secret_access_key = ~~~~~~~~~~~~~~~~~~~~~
 region = ap-northeast-1
 output = json
 ----------------------------------------------
-
+```
 
 (~/backend.tf)
 tfstateファイルをS3で管理
